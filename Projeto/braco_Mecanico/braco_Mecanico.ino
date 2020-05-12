@@ -46,67 +46,85 @@
  
  * This example code is released into the MIT License.
  */
+
 #include <Servo.h>
+
+#define btnGarraMais 2                       //Utilizando o define para melhor leitura do código
+#define btnGarraMenos 3
+#define btnBaseMais1 7
+#define btnBaseMais2 13
+#define btnBaseMenos 4
+#define btnDirMais 10
+#define btnDirMenos 12
+
+#define servoGarra 9
+#define servoBase 11
+#define servoEsq 5
+#define servoDir 6 
+
 Servo garra;
 Servo dir;
 Servo esq;
 Servo base;
 
+int i = 0;                                      // Declarando váriavel de controle no inicio, para não precisar declara-la novamente
+
 void setup() {
-  garra.attach (9);
-  base.attach (11);
-  esq.attach (5);
-  dir.attach (6);
-  pinMode (2, INPUT);
-  pinMode (3, INPUT);
-  pinMode (4, INPUT);
-  pinMode (7, INPUT);
-  pinMode (10, INPUT);
-  pinMode (12, INPUT);
-  pinMode (13, INPUT);
+  garra.attach (servoGarra);
+  base.attach (servoBase);
+  esq.attach (servoEsq);
+  dir.attach (servoDir);
+  
+  pinMode (btnGarraMais, INPUT);
+  pinMode (btnGarraMenos, INPUT);
+  pinMode (btnBaseMais1, INPUT);
+  pinMode (btnBaseMais2, INPUT);
+  pinMode (btnBaseMenos, INPUT);
+  pinMode (btnDirMais, INPUT);
+  pinMode (btnDirMenos, INPUT);
 }
 
 void loop() {
-  if (digitalRead (2) ==  HIGH) {
-    for (int i = 0; i <= 170; i++) {
+  if (digitalRead(btnGarraMais) ==  HIGH) {
+    for (i = 0; i <= 170; i++) {
       garra.write(i);
       delay(5);
     }
   }
-  if (digitalRead (3) ==  HIGH) {
-    for (int i = 170; i >= 0; i--) {
+  if (digitalRead(btnGarraMenos) ==  HIGH) {
+    for (i = 170; i >= 0; i--) {
       garra.write(i);
       delay(5);
     }
   }
-  if (digitalRead (4) ==  HIGH) {
-    for (int i = 160; i >= 0; i--) {
+  if (digitalRead(btnBaseMenos) ==  HIGH) {
+    for (i = 160; i >= 0; i--) {
       base.write(i);
       delay(8);
     }
   }
-  if (digitalRead (7) ==  HIGH) {
-    for (int i = 0; i <= 160; i++) {
+  if (digitalRead(btnBaseMais1) ==  HIGH) {
+    for (i = 0; i <= 160; i++) {
       base.write(i);
       delay(8);
     }
   }
-  if (digitalRead (10) ==  HIGH) {
-    for (int i = 50; i <= 140; i++) {
+  if (digitalRead(btnDirMais) ==  HIGH) {
+    for (i = 50; i <= 140; i++) {
 
       dir.write(i);
       delay(8);
     }
   }
-  if (digitalRead (12) ==  HIGH) {
-    for (int i = 140; i >= 50; i--) {
+  if (digitalRead(btnDirMenos) ==  HIGH) {
+    for (i = 140; i >= 50; i--) {
 
       dir.write(i);
       delay(8);
     }
   }
-  if (digitalRead (13) ==  HIGH) {
-    for (int i = 50; i <= 70; i++) {
+  if (digitalRead(btnBaseMais2) ==  HIGH) {
+    for (i = 50; i <= 70; i++) {
       base.write(i);
       delay(8);
     }
